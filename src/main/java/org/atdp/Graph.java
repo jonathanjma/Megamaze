@@ -21,7 +21,10 @@ public class Graph {
      * with labels 0, 1, and 2.
      */
     public Graph(int numVertices) {
-        // YOUR CODE HERE
+        vertices = new ArrayList<>();
+        for (int i = 0; i < numVertices; i++) {
+            vertices.add(new Vertex(i));
+        }
     }
 
     /**
@@ -31,7 +34,10 @@ public class Graph {
      * In the case that u == v, do nothing (simple graphs only).
      */
     public void addEdge(int u, int v) {
-        // YOUR CODE HERE
+        if (u != v) {
+            vertices.get(u).edges.add(vertices.get(v));
+            vertices.get(v).edges.add(vertices.get(u));
+        }
     }
 
     /**
@@ -39,7 +45,9 @@ public class Graph {
      * Returns null if the ID does not exist in the graph.
      */
     public Vertex getVertex(int id) {
-        // YOUR CODE HERE
+        if (id >= 0 && id < vertices.size()) {
+            return vertices.get(id);
+        }
         return null;
     }
 }
