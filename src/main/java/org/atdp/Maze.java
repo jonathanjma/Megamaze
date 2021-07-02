@@ -35,10 +35,12 @@ public class Maze extends Graph {
     public Maze(int height, int width, int seed) {
         // Call Graph constructor
         super(height * width);
-
         // Instantiate variables
-
+        this.height = height;
+        this.width = width;
+        gen = new Random(seed); //not sure if this is how we are supposed to implement this part
         // Generate maze
+        generateMaze();
     }
 
     /**
@@ -46,6 +48,7 @@ public class Maze extends Graph {
      */
     public Maze(int height, int width) {
         this(height, width, (int)(Math.random() * 32768));
+        generateMaze();
     }
 
     // Getter functions
@@ -78,8 +81,17 @@ public class Maze extends Graph {
      */
     List<Vertex> getNeighbors(Vertex v) {
         List<Vertex> neighbors = new ArrayList<>();
-        
-        // YOUR CODE HERE
+        if(getVertex(v.id) != null) //vertex is part of graph
+        {
+	        if(v.id % width !=0) //not on left edge
+	        	neighbors.add(vertices.get(v.id-1)); 
+	        if(v.id % width != width-1) //not on right edge
+	        	neighbors.add(vertices.get(v.id+1));
+	        if(!(v.id < width && height >1)) //not on top row
+	        	neighbors.add(vertices.get(v.id-width));
+	        if(!(v.id >= width*height-width && height>1)) //not on bottom row
+	        	neighbors.add(vertices.get(v.id+width));
+        }
 
         return neighbors;
     }
