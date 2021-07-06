@@ -84,7 +84,7 @@ public class Maze extends Graph {
             remove wall from list
          */
 
-        Set<Vertex> walls = new HashSet<>();
+    	ArrayList<Vertex> walls = new ArrayList<Vertex>();
         boolean[] visited = new boolean[vertices.size()];
 
         Vertex v = vertices.get(0);
@@ -92,10 +92,13 @@ public class Maze extends Graph {
         walls.addAll(getNeighbors(v));
 
         while (!walls.isEmpty()) {
-            Vertex wall = walls.toArray(new Vertex[0])[gen.nextInt(walls.size())];
-
+        	Vertex wall = walls.get(gen.nextInt(walls.size()));
+        	
             if (!getNeighbors(v).contains(wall)) {
-                for (Vertex x : getNeighbors(wall)) {
+            	List<Vertex> neighbors = getNeighbors(wall);
+            	int NSize = neighbors.size();
+                for (int i = 0; i< NSize; i++) {
+                	Vertex x = neighbors.remove(gen.nextInt(neighbors.size()));
                     if (visited[x.id]) {
                         v = x;
                     }
