@@ -67,4 +67,13 @@ class Vertex {
         edges = new HashSet<>();
         this.id = id;
     }
+
+    public String toString() {
+        String s = id + ": [";
+        if (edges.isEmpty()) return s + "]";
+        for (Vertex v : edges) {
+            s += v.id + ", ";
+        }
+        return s.substring(0, s.length() - 2) + "]";
+    }
 }

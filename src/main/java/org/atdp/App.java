@@ -1,13 +1,13 @@
 package org.atdp;
 
-import static spark.Spark.*;
+import com.google.gson.Gson;
+import spark.Filter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.google.gson.Gson;
-
-import spark.Filter;
+import static spark.Spark.after;
+import static spark.Spark.get;
 
 /**
  * Entrypoint for the MegaMaze backend. There should be no need to edit this file.
@@ -77,7 +77,7 @@ class TestMaze extends Maze {
     }
 
     @Override
-    void generateMaze() {
+    public void generateMaze() {
         addEdge(0, 1);
         addEdge(1, 4);
         addEdge(4, 5);
