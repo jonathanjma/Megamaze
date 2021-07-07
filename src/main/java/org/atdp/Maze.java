@@ -1,6 +1,8 @@
 package org.atdp;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Contains the basic structure and utilities for generating mazes up to 100x100 in size.
@@ -84,7 +86,7 @@ public class Maze extends Graph {
             remove wall from list
          */
 
-    	ArrayList<Vertex> walls = new ArrayList<Vertex>();
+    	ArrayList<Vertex> walls = new ArrayList<>();
         boolean[] visited = new boolean[vertices.size()];
 
         Vertex v = vertices.get(0);
@@ -97,7 +99,7 @@ public class Maze extends Graph {
             if (!getNeighbors(v).contains(wall)) {
             	List<Vertex> neighbors = getNeighbors(wall);
             	int NSize = neighbors.size();
-                for (int i = 0; i< NSize; i++) {
+                for (int i = 0; i < NSize; i++) {
                 	Vertex x = neighbors.remove(gen.nextInt(neighbors.size()));
                     if (visited[x.id]) {
                         v = x;

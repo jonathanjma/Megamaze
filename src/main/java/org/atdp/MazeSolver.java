@@ -1,11 +1,6 @@
 package org.atdp;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class MazeSolver {
 
@@ -33,13 +28,54 @@ public class MazeSolver {
         distTo = new HashMap<>();
         edgeTo = new HashMap<>();
         pq = new PriorityQueue<>(m.getHeight() * m.getWidth(), new DistComparator());
+        int nodesVisited = 0;
 
-        List<Integer> result = new ArrayList<Integer>();
-        
-        // YOUR CODE HERE
+        List<Integer> result = new ArrayList<>();
+
+        for (int i = 0; i < m.vertices.size(); i++) {
+            distTo.put(i, i == 0 ? 0 : INFINITY);
+            pq.add(m.vertices.get(i));
+        }
+
+        while (!pq.isEmpty()) {
+            Vertex v = pq.remove();
+            for (Vertex edge : v.edges) {
+                if (distTo.get(edge.id) > nodesVisited + 1) {
+                    distTo.put(edge.id, nodesVisited + 1);
+                    edgeTo.put(edge.id, v);
+                    pq.remove(edge);
+                    pq.add(edge);
+                }
+            }
+
+            System.out.println(pq);
+
+//            if (v.id == m.getWidth() * m.getHeight() - 1) {
+//                break;
+//            }
+
+            nodesVisited++;
+        }
+
+        System.out.println("\n"+distTo);
+        System.out.println(edgeTo);
+
+        Vertex v = m.vertices.get(m.getWidth() * m.getHeight() - 1);
+        result.add(v.id);
+        while (v.id != 0) {
+            v = edgeTo.get(v.id);
+            result.add(v.id);
+        }
+
+        Collections.reverse(result);
+        System.out.println(result);
 
         return result;
     }
+
+//    public int h(int v, int goal) {
+//
+//    }
 
     // Feel free to create additional methods below, if needed.
 
