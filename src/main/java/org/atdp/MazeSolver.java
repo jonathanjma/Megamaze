@@ -9,6 +9,7 @@ public class MazeSolver {
     private Map<Integer, Integer> distTo;
     private Map<Integer, Vertex> edgeTo;
     private PriorityQueue<Vertex> pq;
+    private Maze m;
 
     /**
      * Finds the shortest path from the start (top left) to the end (bottom right) of a maze M.
@@ -24,6 +25,7 @@ public class MazeSolver {
      * The solution should be a list of {0, 1, 4, 5, 8}.
      */
     public List<Integer> solve(Maze m) {
+        long start = System.currentTimeMillis(); this.m = m;
         // Again, the following is optional. You may remove it if you do not need it for your implementation.
         distTo = new HashMap<>();
         edgeTo = new HashMap<>();
@@ -49,12 +51,11 @@ public class MazeSolver {
             }
 
             System.out.println(pq);
-
-//            if (v.id == m.getWidth() * m.getHeight() - 1) {
-//                break;
-//            }
-
             nodesVisited++;
+
+            if (v.id == m.getWidth() * m.getHeight() - 1) {
+                break;
+            }
         }
 
         System.out.println("\n"+distTo);
@@ -70,12 +71,18 @@ public class MazeSolver {
         Collections.reverse(result);
         System.out.println(result);
 
+        System.out.println(nodesVisited + " "+ (m.getHeight()*m.getWidth()));
+        System.out.println("\nTime to solve: " + (System.currentTimeMillis() - start) + " ms");
+
         return result;
     }
 
-//    public int h(int v, int goal) {
-//
-//    }
+    public int h(int v) {
+        int x = v % m.getWidth() + 1;
+        int y = v / m.getHeight() + 1;
+        return (int) Math.sqrt(Math.pow(m.getWidth() - x, 2) + Math.pow(m.getHeight() - y, 2)); // euclidean
+//        return ((m.getWidth() - x) + (m.getHeight() - y)); // manhattan
+    }
 
     // Feel free to create additional methods below, if needed.
 
@@ -90,8 +97,8 @@ public class MazeSolver {
     private class DistComparator implements Comparator<Vertex> {
         @Override
         public int compare(Vertex v1, Vertex v2) {
-            int d1 = distTo.get(v1.id);
-            int d2 = distTo.get(v2.id);
+            int d1 = distTo.get(v1.id) + h(v1.id);
+            int d2 = distTo.get(v2.id) + h(v2.id);
 
             if (d1 < d2) return -1;
             else if (d1 > d2) return 1;
