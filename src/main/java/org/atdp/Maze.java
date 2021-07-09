@@ -67,7 +67,7 @@ public class Maze extends Graph {
      * HINT: Try to figure out a way to modify BFS or DFS to create connections
      * as you perform a graph traversal of some sort!
      */
-    public void generateMaze() {
+    void generateMaze() {
 
         /*
         Prims: start at a node and add to pq
@@ -128,7 +128,7 @@ public class Maze extends Graph {
      * the neighbors of 4 should be [1, 3, 5, 7],
      * but the neighbors of 6 are only [3, 7].
      */
-    public List<Vertex> getNeighbors(Vertex v) {
+    List<Vertex> getNeighbors(Vertex v) {
         List<Vertex> neighbors = new ArrayList<>();
 
         // vertex is part of graph

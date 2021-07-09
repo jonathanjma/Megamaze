@@ -77,7 +77,7 @@ class TestMaze extends Maze {
     }
 
     @Override
-    public void generateMaze() {
+    void generateMaze() {
         addEdge(0, 1);
         addEdge(1, 4);
         addEdge(4, 5);
