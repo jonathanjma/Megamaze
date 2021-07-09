@@ -116,7 +116,7 @@ public class Maze extends Graph {
             walls.remove(wall);
         }
 
-        System.out.println(vertices);
+//        System.out.println(vertices);
     }
 
     /**

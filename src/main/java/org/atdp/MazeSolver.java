@@ -50,7 +50,7 @@ public class MazeSolver {
                 }
             }
 
-            System.out.println(pq);
+//            System.out.println(pq);
             nodesVisited++;
 
             if (v.id == m.getWidth() * m.getHeight() - 1) {
@@ -58,8 +58,8 @@ public class MazeSolver {
             }
         }
 
-        System.out.println("\n"+distTo);
-        System.out.println(edgeTo);
+//        System.out.println("\n"+distTo);
+//        System.out.println(edgeTo);
 
         Vertex v = m.vertices.get(m.getWidth() * m.getHeight() - 1);
         result.add(v.id);
@@ -69,10 +69,10 @@ public class MazeSolver {
         }
 
         Collections.reverse(result);
-        System.out.println(result);
-
-        System.out.println(nodesVisited + " "+ (m.getHeight()*m.getWidth()));
-        System.out.println("\nTime to solve: " + (System.currentTimeMillis() - start) + " ms");
+//        System.out.println(result);
+//
+//        System.out.println(nodesVisited + " "+ (m.getHeight()*m.getWidth()));
+//        System.out.println("\nTime to solve: " + (System.currentTimeMillis() - start) + " ms");
 
         return result;
     }
