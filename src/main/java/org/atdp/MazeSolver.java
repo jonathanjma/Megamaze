@@ -70,7 +70,6 @@ public class MazeSolver {
 
         Collections.reverse(result);
 //        System.out.println(result);
-//
 //        System.out.println(nodesVisited + " "+ (m.getHeight()*m.getWidth()));
 //        System.out.println("\nTime to solve: " + (System.currentTimeMillis() - start) + " ms");
 
@@ -83,8 +82,6 @@ public class MazeSolver {
         return (int) Math.sqrt(Math.pow(m.getWidth() - x, 2) + Math.pow(m.getHeight() - y, 2)); // euclidean
 //        return ((m.getWidth() - x) + (m.getHeight() - y)); // manhattan
     }
-
-    // Feel free to create additional methods below, if needed.
 
     /**
      * This is passed into PriorityQueue as a parameter to properly compare the distTo values for two vertices.
